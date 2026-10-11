@@ -6,17 +6,19 @@
 
 A single-page, framework-free portfolio built with semantic HTML5, custom-property-driven CSS3 and vanilla ES6+ JavaScript.
 
-[![Live](https://img.shields.io/badge/Live-ayushrathour.netlify.app-00C7B7?logo=netlify&logoColor=white)](https://ayushrathour.netlify.app)
+[![Live](https://img.shields.io/badge/Live-portfolio--ayushr.netlify.app-00C7B7?logo=netlify&logoColor=white)](https://portfolio-ayushr.netlify.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
 
-[Live Site](https://ayushrathour.netlify.app) · [Report an Issue](https://github.com/ayush-rathour/portfolio/issues) · [Contact](#contact)
+[Live Site](https://portfolio-ayushr.netlify.app) · [Report an Issue](https://github.com/ayush-rathour/portfolio-ayushr/issues) · [Contact](#contact)
 
 </div>
 
 ---
+
+> **Note:** This is my earlier portfolio, kept online alongside my newer one. A small dismissible banner on the site links to the new version (see [Customisation](#customisation)).
 
 ## Contents
 
@@ -65,6 +67,7 @@ A single-page, framework-free portfolio built with semantic HTML5, custom-proper
 - **Boot-sequence preloader.** A canvas of floating hexagons and a faux boot console (`SYS`, `ENV`, `CSS`, `JS`, `NET`, `READY`). Progress is driven by real milestones: DOM ready, fonts ready, critical images decoded and `window.onload`.
 - **Scroll-reveal engine.** One shared `IntersectionObserver` handles staggered, directional reveals across all sections.
 - **Reduced-motion support.** A full `prefers-reduced-motion` ruleset disables animation on request.
+- **New-portfolio banner.** A dismissible notice (remembered per session) linking to the newer portfolio. It stays hidden until a real URL is set.
 
 ### Navigation
 
@@ -110,7 +113,7 @@ A single-page, framework-free portfolio built with semantic HTML5, custom-proper
 ## Project Structure
 
 ```text
-portfolio/
+portfolio-ayushr/
 ├── index.html                # Page markup, meta tags, JSON-LD
 ├── styles.css                # Design tokens, layout, animations, media queries
 ├── script.js                 # All interactive behaviour (see "How It Works")
@@ -153,6 +156,7 @@ portfolio/
 | **Projects**         | Status filter and the custom fullscreen lightbox                                                                       |
 | **Gallery**          | Reveal observer and tag filter (GLightbox is initialised in `index.html`)                                              |
 | **Contact form**     | Per-field validation, `fetch` submission, success and error states                                                     |
+| **Legacy banner**    | Shows the new-portfolio link when configured, remembers dismissal for the session                                      |
 | **Support modal**    | Open/close logic and the 90-second auto-prompt                                                                         |
 | **Global reveal**    | `registerRevealElements()` tagging, shared observer, back-to-top button                                                |
 
@@ -171,8 +175,8 @@ Canvas starts  →  listeners attach (DOM, fonts, images, load)
 No installation or build is required.
 
 ```bash
-git clone https://github.com/ayush-rathour/portfolio.git
-cd portfolio
+git clone https://github.com/ayush-rathour/portfolio-ayushr.git
+cd portfolio-ayushr
 
 # Serve locally (pick one)
 python -m http.server 8000
@@ -185,20 +189,21 @@ Open `http://localhost:8000`. Use a local server rather than opening the file di
 
 ## Customisation
 
-| What                | Where                                               | How                                                                         |
-| :------------------ | :-------------------------------------------------- | :-------------------------------------------------------------------------- |
-| Theme colours       | `styles.css` → `:root`                              | Edit `--primary-color`, `--background-color`, `--hover-bg-color`            |
-| Hero text and stats | `index.html` → `#home`                              | Edit the text nodes and `.hs-num` / `.hs-label` values                      |
-| Terminal identity   | `script.js` → `terminalData`                        | Edit the key/value entries                                                  |
-| Rotating roles      | `script.js` → `roles`                               | Edit the array                                                              |
-| Skill levels        | `index.html` → `#skills`                            | Set `data-pct` (0 to 100) on each `.skill-block`                            |
-| Milestones          | `index.html` → `#milestones`                        | Add or edit `.tl-item` blocks and keep `data-year` correct                  |
-| Projects            | `index.html` → `#projects`                          | Add `.proj-card` entries and set `data-status` (`live`, `paid`, `archived`) |
-| Gallery items       | `index.html` → `#gallery`                           | Add `.gl2-item` entries with a `data-gl-tag` that matches a filter button   |
-| Contact form        | `index.html` → `#contactForm`                       | Replace the `access_key` with your own Web3Forms key                        |
-| Analytics           | `index.html` → bottom scripts                       | Replace the `G-` measurement ID with your own, or remove it                 |
-| Support modal       | `index.html` → `#supportPopup`                      | Update the UPI link and QR image, or remove the block                       |
-| Auto popup delay    | `script.js` → `setTimeout(openSupportModal, 90000)` | Change or delete the timer                                                  |
+| What                 | Where                                               | How                                                                                         |
+| :------------------- | :-------------------------------------------------- | :------------------------------------------------------------------------------------------ |
+| Theme colours        | `styles.css` → `:root`                              | Edit `--primary-color`, `--background-color`, `--hover-bg-color`                            |
+| Hero text and stats  | `index.html` → `#home`                              | Edit the text nodes and `.hs-num` / `.hs-label` values                                      |
+| Terminal identity    | `script.js` → `terminalData`                        | Edit the key/value entries                                                                  |
+| Rotating roles       | `script.js` → `roles`                               | Edit the array                                                                              |
+| Skill levels         | `index.html` → `#skills`                            | Set `data-pct` (0 to 100) on each `.skill-block`                                            |
+| Milestones           | `index.html` → `#milestones`                        | Add or edit `.tl-item` blocks and keep `data-year` correct                                  |
+| Projects             | `index.html` → `#projects`                          | Add `.proj-card` entries and set `data-status` (`live`, `paid`, `archived`)                 |
+| Gallery items        | `index.html` → `#gallery`                           | Add `.gl2-item` entries with a `data-gl-tag` that matches a filter button                   |
+| Contact form         | `index.html` → `#contactForm`                       | Replace the `access_key` with your own Web3Forms key                                        |
+| Analytics            | `index.html` → bottom scripts                       | Replace the `G-` measurement ID with your own, or remove it                                 |
+| New-portfolio banner | `index.html` → `#legacyBanner`                      | Set `data-new-url` to your new site URL (hidden while it contains `YOUR-NEW-PORTFOLIO-URL`) |
+| Support modal        | `index.html` → `#supportPopup`                      | Update the UPI link and QR image, or remove the block                                       |
+| Auto popup delay     | `script.js` → `setTimeout(openSupportModal, 90000)` | Change or delete the timer                                                                  |
 
 ---
 

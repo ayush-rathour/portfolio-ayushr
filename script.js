@@ -1124,3 +1124,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* =============================================================================
+   LEGACY NOTICE BANNER (#legacyBanner)
+   Shows a dismissible link to the new portfolio once data-new-url is set.
+   ============================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById("legacyBanner");
+  if (!banner) return;
+
+  const link = document.getElementById("legacyBannerLink");
+  const closeBtn = document.getElementById("legacyBannerClose");
+  const newUrl = banner.dataset.newUrl || "";
+  const STORAGE_KEY = "legacyBannerDismissed";
+
+  // Stay hidden until a real URL is configured
+  if (!newUrl || newUrl.includes("YOUR-NEW-PORTFOLIO-URL")) return;
+
+  let dismissed = false;
+  try {
+    dismissed = sessionStorage.getItem(STORAGE_KEY) === "1";
+  } catch (err) {
+    /* storage unavailable: show the banner anyway */
+  }
+  if (dismissed) return;
+
+  if (link) link.href = newUrl;
+  banner.hidden = false;
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      banner.hidden = true;
+      try {
+        sessionStorage.setItem(STORAGE_KEY, "1");
+      } catch (err) {
+        /* ignore */
+      }
+    });
+  }
+});
